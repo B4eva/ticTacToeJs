@@ -37,8 +37,14 @@ let currentPlayer = "X";
      const currentPlayerTurn = () => `it's ${currentPlayer}'s turn`;
 
      /*we set the initial message to let the players know whose turn it is  */
+
      statusDisplay.innerHTML = currentPlayerTurn(); 
-        function handleCellPlayed(){
+        function handleCellPlyed(clickedCell, clickCellIndex){
+            /* we update our internal game state to reflect the played move,
+               as well  as update the user interface top reflect the played move
+             */
+                gameState[clickCellIndex] = currentPlayer;
+                clickedCell.innerHTML = currentPlayer;
 
         } 
 
@@ -46,8 +52,37 @@ let currentPlayer = "X";
 
          }
 
-          function handleResultValidation(){
+            const winningCondition = [
+                [0,1,2],
+                [3,4,5],
+                [6,7,8],
+                [0,3,6],
+                [1,4,7],
+                [2,5,8],
+                [0,4,8],
+                [2,4,6]
+            ];
 
+          function handleResultValidation(){
+                let roundWon = false; 
+                    for (let i= 0; i<=7; i++){
+                        const winningCondition =  winningCondition[i];
+                        let a = gameState[winningCondition[0]];
+                        let b = gameState[winningCondition[1]];
+                        let c = gameState[winningCondition[2]];
+                        if (a ==='' || b === '' || c === '' ){
+                            continue; 
+                        }   
+                        if (a === b && b=== c)  {
+                            roundWon = true; 
+                            break 
+                        }
+                    } 
+                     if(roundWon) {
+                         statusDisplay.innerHTML = winninMessage(); 
+                         gameActive = false; 
+                         return;
+                     }
           } 
 
           function handleCellClick(clickedCellEvent){
