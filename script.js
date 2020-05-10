@@ -50,7 +50,31 @@ let currentPlayer = "X";
 
           } 
 
-          function handleCellClick(){
+          function handleCellClick(clickedCellEvent){
+              /*
+            We will save the clicked html element in a variable for easier further use
+            */ 
+              const clickedCell = clickedCellEvent.target; 
+                const clickCellIndex = parseInt(
+                    clickedCell.getAttribute('data-cell-index')
+                ); 
+                /* 
+                Next up we need to check whether the call has already been played, 
+                or if the game is paused. If either of those is true we will simply ignore the click.
+                */
+
+                if(gameState[clickCellIndex] !=="" || !gameActive){
+                    return; 
+                    /* 
+                    if everything is in order we will proceed with the game flow 
+                    */
+                } 
+
+                handleCellPlayed(clickedCell, clickCellIndex);
+                handleRestartValidation();
+ 
+
+
 
           }
           function handleRestartGame(){
