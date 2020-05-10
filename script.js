@@ -25,7 +25,7 @@ let currentPlayer = "X";
  will allow us to easily tract played cells and validate the game state later on 
  */  
  
-  let gameState = []; 
+  let gameState = ["", "", "", "", "", "", "", "", ""];
    
   /*   Here wew have declared some messages we will display to the user during the game.
        since we have some dynamic factors in those messages, name the current player, 
