@@ -132,7 +132,14 @@ let currentPlayer = "X";
 
 
           }
-          function handleRestartGame(){
+          function handleRestartGame(){ 
+              gameActive = true; 
+              currentPlayer = "X";
+              gameState = ["", "", "", "", "", "", "", "", ""];
+              statusDisplay.innerHTML = currentPlayerTurn();
+
+              document.querySelector('.cell')
+                        forEach(cell => cell.innerHTML = "");
 
           } 
 
